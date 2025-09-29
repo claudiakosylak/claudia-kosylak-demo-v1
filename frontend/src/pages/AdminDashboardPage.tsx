@@ -16,7 +16,7 @@ export default function AdminDashboardPage() {
     allUsers: [] as User[],
   })
   const [loading, setLoading] = useState(true)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, _setCurrentPage] = useState(1)
 
   const getDisplayName = () => {
     if (user?.first_name && user?.last_name) {
@@ -76,7 +76,7 @@ export default function AdminDashboardPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-accent"></div>
       </div>
     )
   }
@@ -92,23 +92,23 @@ export default function AdminDashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid gap-4 md:grid-cols-3">
-        <Card>
+        <Card className="border-accent/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <Users className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.totalUsers}</div>
+            <div className="text-2xl font-bold text-accent">{stats.totalUsers}</div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-accent/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Recent Signups</CardTitle>
-            <UserPlus className="h-4 w-4 text-muted-foreground" />
+            <UserPlus className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.recentSignups.length}</div>
+            <div className="text-2xl font-bold text-accent">{stats.recentSignups.length}</div>
             <p className="text-xs text-muted-foreground">Last 24 hours</p>
           </CardContent>
         </Card>
@@ -119,7 +119,7 @@ export default function AdminDashboardPage() {
             <Settings className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <Button asChild size="sm">
+            <Button asChild size="sm" className="gradient-accent hover:gradient-accent-hover text-white">
               <Link to="/profile">Manage Profile</Link>
             </Button>
           </CardContent>
@@ -140,7 +140,7 @@ export default function AdminDashboardPage() {
               {stats.recentSignups.map((recentUser) => (
                 <div
                   key={recentUser.id}
-                  className="flex items-center justify-between p-3 border rounded-lg"
+                  className="flex flex-col sm:flex-row sm:items-center gap-2 justify-between p-3 border rounded-lg"
                 >
                   <div>
                     <p className="font-medium">
@@ -150,7 +150,7 @@ export default function AdminDashboardPage() {
                     </p>
                     <p className="text-sm text-muted-foreground">{recentUser.email}</p>
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-muted-foreground self-end">
                     {formatDate(recentUser.created_at)}
                   </div>
                 </div>
@@ -173,7 +173,7 @@ export default function AdminDashboardPage() {
             {stats.allUsers.map((listUser) => (
               <div
                 key={listUser.id}
-                className="flex items-center justify-between p-3 border rounded-lg"
+                className="flex flex-col sm:flex-row sm:items-center justify-between p-3 border rounded-lg gap-2"
               >
                 <div className="flex-1">
                   <p className="font-medium">
@@ -183,10 +183,10 @@ export default function AdminDashboardPage() {
                   </p>
                   <p className="text-sm text-muted-foreground">{listUser.email}</p>
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 justify-between sm:justify-end">
                   <span className={`px-2 py-1 text-xs rounded-full ${
                     listUser.role === 'admin'
-                      ? 'bg-primary text-primary-foreground'
+                      ? 'bg-accent/20 text-accent'
                       : 'bg-secondary text-secondary-foreground'
                   }`}>
                     {listUser.role}

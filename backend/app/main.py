@@ -14,7 +14,8 @@ load_dotenv()
 app = FastAPI(
     title="Claudia Kosylak Demo API",
     description="FastAPI backend with Google OAuth and user management",
-    version="1.0.0"
+    version="1.0.0",
+    redirect_slashes=False
 )
 
 # Configure CORS

@@ -86,7 +86,7 @@ export default function ProfilePage() {
   if (!user) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent"></div>
       </div>
     );
   }
@@ -155,7 +155,7 @@ export default function ProfilePage() {
               </p>
             </div>
 
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} className="gradient-accent hover:gradient-accent-hover text-white">
               {loading ? "Updating..." : "Update Profile"}
             </Button>
           </CardContent>

@@ -108,7 +108,7 @@ export const userApi = {
     if (params.sort_direction) searchParams.set('sort_direction', params.sort_direction)
 
     const query = searchParams.toString()
-    return fetchApi<UsersResponse>(`/users${query ? `?${query}` : ''}`)
+    return fetchApi<UsersResponse>(`/users/${query ? `?${query}` : ''}`)
   },
 }
 

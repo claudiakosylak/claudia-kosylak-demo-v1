@@ -32,7 +32,7 @@ export default function DashboardPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button asChild>
+            <Button asChild className="gradient-accent hover:gradient-accent-hover text-white">
               <Link to="/profile" className="flex items-center gap-2">
                 <User className="h-4 w-4" />
                 View Profile

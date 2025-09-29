@@ -35,7 +35,7 @@ export default function Layout() {
 
           {user && (
             <div className="flex items-center space-x-2 sm:space-x-4">
-              <Button asChild variant="ghost">
+              <Button asChild variant="ghost" className="text-accent hover:text-accent hover:bg-accent/10">
                 <Link to={user.role === 'admin' ? '/admin/dashboard' : '/dashboard'}>
                   Dashboard
                 </Link>

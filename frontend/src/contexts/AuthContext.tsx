@@ -72,7 +72,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       await authApi.logout();
       setUser(null);
-      toast("You have been successfully logged out");
+      toast.success("You have been successfully logged out");
     } catch (error) {
       console.error("Logout error:", error);
       // Still clear user on client side even if server request fails

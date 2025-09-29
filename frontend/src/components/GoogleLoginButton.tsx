@@ -68,6 +68,6 @@ export default function GoogleLoginButton({ onSuccess, onError }: GoogleLoginBut
   }, [login, onSuccess, onError])
 
   return (
-    <div ref={buttonRef} className="w-full min-h-[44px]" />
+    <div ref={buttonRef} className="w-full min-h-[44px] flex justify-center" />
   )
 }

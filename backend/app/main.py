@@ -12,7 +12,7 @@ from .database import SessionLocal
 load_dotenv()
 
 app = FastAPI(
-    title="Full-Stack Monorepo API",
+    title="Claudia Kosylak Demo API",
     description="FastAPI backend with Google OAuth and user management",
     version="1.0.0"
 )
@@ -77,7 +77,7 @@ async def startup_event():
 async def root():
     """Health check endpoint"""
     return {
-        "message": "Full-Stack Monorepo API",
+        "message": "Claudia Kosylak Demo API",
         "status": "healthy",
         "version": "1.0.0"
     }

@@ -1,36 +1,38 @@
+/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 270 55% 13%; /* Your --dark-purple-2 */
+    --foreground: 230 33% 62%; /* Your --glaucous */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card: 237 34% 23%; /* Your --space-cadet */
+    --card-foreground: 230 33% 85%; /* A lighter version of --glaucous for better contrast */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --popover: 237 34% 18%; /* A darker version of --space-cadet */
+    --popover-foreground: 230 33% 85%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 250 28% 49%; /* Your --ultra-violet */
+    --primary-foreground: 230 33% 95%; /* A very light color for text on primary buttons */
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 271 54% 20%; /* A slightly lighter --dark-purple */
+    --secondary-foreground: 230 33% 90%;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    --muted: 237 34% 23%;
+    --muted-foreground: 230 33% 50%; /* A dimmer --glaucous */
 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --accent: 271 54% 22%; /* Used for hover states */
+    --accent-foreground: 230 33% 95%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%; /* A standard red for errors */
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 237 34% 28%; /* A slightly lighter --space-cadet */
+    --input: 237 34% 28%;
+
+    --ring: 250 28% 49%; /* Your --ultra-violet for focus rings */
 
     --radius: 0.5rem;
   }

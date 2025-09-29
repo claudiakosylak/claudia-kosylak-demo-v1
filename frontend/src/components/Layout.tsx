@@ -30,13 +30,13 @@ export default function Layout() {
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-semibold">Full-Stack App</h1>
+            <h1 className="text-xl font-semibold">Claudia Kosylak Demo</h1>
           </div>
-          
+
           {user && (
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-muted-foreground">{user.email}</span>
-              
+              <span className="hidden sm:block text-sm text-muted-foreground">{user.email}</span>
+
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-10 w-10 rounded-full">
@@ -64,7 +64,7 @@ export default function Layout() {
           )}
         </div>
       </header>
-      
+
       <main className="container mx-auto px-4 py-8">
         <Outlet />
       </main>

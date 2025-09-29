@@ -14,7 +14,7 @@ class UserCreate(UserBase):
 class UserUpdate(BaseModel):
     first_name: str
     last_name: str
-    
+
     @validator('first_name', 'last_name')
     def validate_name(cls, v):
         if not v or len(v.strip()) < 2:
@@ -30,7 +30,9 @@ class User(UserBase):
     role: UserRole
     created_at: datetime
     updated_at: datetime
-    
+    google_first_name: Optional[str] = None
+    google_last_name: Optional[str] = None
+
     class Config:
         from_attributes = True
 

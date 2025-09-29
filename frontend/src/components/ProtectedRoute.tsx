@@ -23,16 +23,16 @@ export default function ProtectedRoute({ children, allowedRoles }: ProtectedRout
     return <Navigate to="/login" replace />
   }
 
-  // If user needs to complete profile (missing first_name or last_name)
-  const needsProfileCompletion = !user.first_name || !user.last_name
+  // If user needs to complete registration (missing first_name or last_name)
+  const needsRegistration = !user.first_name || !user.last_name
 
-  if (needsProfileCompletion) {
-    // Allow access to profile page to complete information
-    if (location.pathname === '/profile') {
+  if (needsRegistration) {
+    // Allow access to register page to complete information
+    if (location.pathname === '/register') {
       return <>{children}</>
     }
-    // Redirect to profile with replace to avoid navigation stack issues
-    return <Navigate to="/profile" replace />
+    // Redirect to register with replace to avoid navigation stack issues
+    return <Navigate to="/register" replace />
   }
 
   // Check role-based access

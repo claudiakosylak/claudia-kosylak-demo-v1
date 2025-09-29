@@ -8,6 +8,8 @@ export interface User {
   role: 'admin' | 'client'
   created_at: string
   updated_at: string
+  google_first_name?: string | null
+  google_last_name?: string | null
 }
 
 export interface LoginResponse {
@@ -39,7 +41,7 @@ async function fetchApi<T>(
   options: RequestInit = {}
 ): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`
-  
+
   const response = await fetch(url, {
     credentials: 'include',
     headers: {
@@ -99,7 +101,7 @@ export const userApi = {
     sort_direction?: 'asc' | 'desc'
   } = {}): Promise<UsersResponse> {
     const searchParams = new URLSearchParams()
-    
+
     if (params.page) searchParams.set('page', params.page.toString())
     if (params.page_size) searchParams.set('page_size', params.page_size.toString())
     if (params.sort_by) searchParams.set('sort_by', params.sort_by)

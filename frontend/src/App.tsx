@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './contexts/AuthContext'
 import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
 import DashboardPage from './pages/DashboardPage'
 import AdminDashboardPage from './pages/AdminDashboardPage'
 import ProfilePage from './pages/ProfilePage'
@@ -27,7 +28,7 @@ function App() {
             <Navigate
               to={
                 !user.first_name || !user.last_name
-                  ? '/profile'
+                  ? '/register'
                   : user.role === 'admin'
                     ? '/admin/dashboard'
                     : '/dashboard'
@@ -40,6 +41,16 @@ function App() {
         }
       />
 
+      {/* Register route - standalone, not within Layout */}
+      <Route
+        path="/register"
+        element={
+          <ProtectedRoute>
+            <RegisterPage />
+          </ProtectedRoute>
+        }
+      />
+
       <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
         <Route
           index
@@ -47,7 +58,7 @@ function App() {
             <Navigate
               to={
                 user && (!user.first_name || !user.last_name)
-                  ? '/profile'
+                  ? '/register'
                   : user?.role === 'admin'
                     ? '/admin/dashboard'
                     : '/dashboard'

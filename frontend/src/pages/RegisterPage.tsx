@@ -7,11 +7,13 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
+import CelebrationModal from '@/components/CelebrationModal'
 
 export default function RegisterPage() {
   const { user, updateUser } = useAuth()
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
+  const [showCelebration, setShowCelebration] = useState(false)
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: ''
@@ -83,14 +85,20 @@ export default function RegisterPage() {
       updateUser(updatedUser)
       toast.success('Profile completed successfully!')
 
-      // Redirect based on role
-      const redirectPath = user.role === 'admin' ? '/admin/dashboard' : '/dashboard'
-      navigate(redirectPath, { replace: true })
+      // Show celebration modal
+      setShowCelebration(true)
     } catch (error: any) {
       toast.error(error.message || 'Failed to update profile')
-    } finally {
       setLoading(false)
     }
+  }
+
+  const handleCloseCelebration = () => {
+    setShowCelebration(false)
+
+    // Redirect based on role after closing modal
+    const redirectPath = user?.role === 'admin' ? '/admin/dashboard' : '/dashboard'
+    navigate(redirectPath, { replace: true })
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,64 +130,72 @@ export default function RegisterPage() {
                       formData.first_name.trim() && formData.last_name.trim()
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4 space-y-6">
-      <h1 className="absolute top-5 left-5 text-2xl font-bold tracking-tight">Claudia K Demo</h1>
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="text-2xl text-center">Complete Your Profile</CardTitle>
-          <CardDescription className="text-center">
-            Please confirm your name to continue
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="first_name">First Name</Label>
-              <Input
-                id="first_name"
-                name="first_name"
-                type="text"
-                value={formData.first_name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="Enter your first name"
-                disabled={loading}
-                autoFocus
-                className={errors.first_name ? 'border-red-500' : ''}
-              />
-              {errors.first_name && (
-                <p className="text-sm text-red-500">{errors.first_name}</p>
-              )}
-            </div>
+    <>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4 space-y-6">
+        <h1 className="absolute top-5 left-5 text-2xl font-bold tracking-tight">Claudia K Demo</h1>
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle className="text-2xl text-center">Complete Your Profile</CardTitle>
+            <CardDescription className="text-center">
+              Please confirm your name to continue
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="first_name">First Name</Label>
+                <Input
+                  id="first_name"
+                  name="first_name"
+                  type="text"
+                  value={formData.first_name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Enter your first name"
+                  disabled={loading}
+                  autoFocus
+                  className={errors.first_name ? 'border-red-500' : ''}
+                />
+                {errors.first_name && (
+                  <p className="text-sm text-red-500">{errors.first_name}</p>
+                )}
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="last_name">Last Name</Label>
-              <Input
-                id="last_name"
-                name="last_name"
-                type="text"
-                value={formData.last_name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="Enter your last name"
-                disabled={loading}
-                className={errors.last_name ? 'border-red-500' : ''}
-              />
-              {errors.last_name && (
-                <p className="text-sm text-red-500">{errors.last_name}</p>
-              )}
-            </div>
+              <div className="space-y-2">
+                <Label htmlFor="last_name">Last Name</Label>
+                <Input
+                  id="last_name"
+                  name="last_name"
+                  type="text"
+                  value={formData.last_name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Enter your last name"
+                  disabled={loading}
+                  className={errors.last_name ? 'border-red-500' : ''}
+                />
+                {errors.last_name && (
+                  <p className="text-sm text-red-500">{errors.last_name}</p>
+                )}
+              </div>
 
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={loading || !isFormValid}
-            >
-              {loading ? 'Saving...' : 'Continue'}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={loading || !isFormValid}
+              >
+                {loading ? 'Saving...' : 'Continue'}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+
+      <CelebrationModal
+        isOpen={showCelebration}
+        onClose={handleCloseCelebration}
+        userName={`${formData.first_name} ${formData.last_name}`}
+      />
+    </>
   )
 }

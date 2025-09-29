@@ -30,11 +30,17 @@ export default function Layout() {
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-semibold">Claudia Kosylak Demo</h1>
+            <h1 className="text-xl font-semibold">Claudia K Demo</h1>
           </div>
 
           {user && (
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <Button asChild variant="ghost">
+                <Link to={user.role === 'admin' ? '/admin/dashboard' : '/dashboard'}>
+                  Dashboard
+                </Link>
+              </Button>
+
               <span className="hidden sm:block text-sm text-muted-foreground">{user.email}</span>
 
               <DropdownMenu>

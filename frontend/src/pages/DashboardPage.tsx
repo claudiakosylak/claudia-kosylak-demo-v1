@@ -53,9 +53,6 @@ export default function DashboardPage() {
               <span className="font-medium">Email:</span> {user?.email}
             </div>
             <div>
-              <span className="font-medium">Role:</span> {user?.role}
-            </div>
-            <div>
               <span className="font-medium">Member since:</span>{' '}
               {user?.created_at ? new Date(user.created_at).toLocaleDateString() : 'Unknown'}
             </div>

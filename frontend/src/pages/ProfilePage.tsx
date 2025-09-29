@@ -167,20 +167,15 @@ export default function ProfilePage() {
           <CardTitle>Account Information</CardTitle>
           <CardDescription>Your account details</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
-              <Label className="font-medium">Role</Label>
-              <p className="text-sm">{user.role}</p>
-            </div>
+        <CardContent className="flex flex-col sm:flex-row gap-4">
+          <div className="flex-1">
             <div>
               <Label className="font-medium">Member Since</Label>
               <p className="text-sm">{formatDate(user.created_at)}</p>
             </div>
           </div>
-
           {user.updated_at && user.updated_at !== user.created_at && (
-            <div>
+            <div className="flex-1">
               <Label className="font-medium">Last Updated</Label>
               <p className="text-sm">{formatDate(user.updated_at)}</p>
             </div>

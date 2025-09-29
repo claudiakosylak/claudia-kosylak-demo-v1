@@ -122,11 +122,12 @@ export default function RegisterPage() {
                       formData.first_name.trim() && formData.last_name.trim()
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4 space-y-6">
+      <h1 className="absolute top-5 left-5 text-2xl font-bold tracking-tight">Claudia K Demo</h1>
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl">Complete Your Profile</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-2xl text-center">Complete Your Profile</CardTitle>
+          <CardDescription className="text-center">
             Please confirm your name to continue
           </CardDescription>
         </CardHeader>

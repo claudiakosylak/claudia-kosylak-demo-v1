@@ -83,7 +83,7 @@ npm run dev
 3. Choose "Web application"
 4. Configure:
    - **Name**: Your app name
-   - **Authorized JavaScript origins**: 
+   - **Authorized JavaScript origins**:
      - `http://localhost:3000` (development)
      - Your production domain
    - **Authorized redirect URIs**:
@@ -126,6 +126,11 @@ ALLOWED_DOMAINS=yourdomain.com,anotherdomain.com
 ADMIN_EMAILS=admin@yourdomain.com,admin2@yourdomain.com
 ```
 
+### Domain and Admin Control
+ALLOWED_DOMAINS: This variable is crucial for controlling who can register and log in. It accepts a comma-separated list of domains. Only users with a Google account email from one of these specified domains will be granted access. For example: "ALLOWED_DOMAINS=domain1.com,domain2.com".
+
+ADMIN_EMAILS: Use this to pre-assign admin privileges to specific users. It accepts a comma-separated list of full email addresses. Any user logging in with an email matching one in this list will automatically be granted the 'admin' role. For example: "ADMIN_EMAILS=admin1@domain.com,admin2@domain.com".
+
 ### Generating JWT Secret
 
 ```bash
@@ -139,7 +144,7 @@ python -c "import secrets; print(secrets.token_urlsafe(32))"
 - `id`: Primary key (integer, auto-increment)
 - `email`: Unique, not null (validated against ALLOWED_DOMAINS)
 - `first_name`: 2-30 characters, nullable
-- `last_name`: 2-30 characters, nullable  
+- `last_name`: 2-30 characters, nullable
 - `role`: "admin" or "client" (default: "client")
 - `created_at`: Timestamp (auto)
 - `updated_at`: Timestamp (auto)
@@ -151,8 +156,9 @@ python -c "import secrets; print(secrets.token_urlsafe(32))"
 3. **Validation**: Backend validates token and checks allowed domains
 4. **User Creation**: New users are created with "client" role
 5. **Admin Assignment**: Users in ADMIN_EMAILS get "admin" role
-6. **JWT Cookie**: HTTP-only secure cookie is set
-7. **Routing**: Users redirected based on role and profile completeness
+6. **Profile Completion**: Upon their first login, users must confirm or add their first and last name to complete their profile before proceeding into the app.
+7. **JWT Cookie**: HTTP-only secure cookie is set
+8. **Routing**: Users redirected based on role and profile completeness
 
 ## 🎯 API Endpoints
 
@@ -190,7 +196,7 @@ npm run dev
 # Frontend only
 npm run dev:frontend
 
-# Backend only  
+# Backend only
 npm run dev:backend
 
 # Build for production
@@ -252,19 +258,3 @@ uvicorn app.main:app --host 0.0.0.0 --port $PORT
 - **Pydantic** - Data validation
 - **python-jose** - JWT handling
 - **google-auth** - Google OAuth validation
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Support
-
-For support, email your-email@example.com or create an issue in the repository.
